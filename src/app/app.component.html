@@ -4,6 +4,27 @@
 
   <button mat-raised-button color="primary" (click) = "addNewLanguage()">Primary</button>
 <p>{{language}}</p>
-<mat-card *ngFor="let lang of langs">
-  Language is  {{lang  + 1}}
-</mat-card>
+<div>
+  <mat-card *ngFor="let lang of langs">
+    Language is  {{lang  + 1}}
+  </mat-card>
+</div>
+<button mat-raised-button color="primary" (click) = "searchProducts()">Get products</button>
+<button mat-raised-button color="primary" (click) = "showAddProduct()">Add product</button>
+
+<app-add-product 
+*ngIf="addProduct"
+(addProduct) = addNewProduct($event)
+></app-add-product>
+<div class="container">
+
+  <app-product 
+  class="product" 
+  *ngFor="let prod of products"
+  [productId] = "prod.id"
+  [productName] = "prod.description"
+  [productPrice] = "prod.price"
+  (deleteEvent)=deleteProduct($event)
+  > </app-product>
+</div>
+
